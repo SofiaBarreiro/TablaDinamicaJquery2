@@ -1,0 +1,160 @@
+.frmAlta{
+
+    
+
+   
+    height: 500px;
+    width: 400px;
+    position: fixed;    
+    top: 50%;
+    left: 50%;
+    border-radius: 30px;
+    background-image: url("\\images\\frmBack.jpg");
+    background-size: 200%;
+    background-color: rgba(45, 218, 117, 1 );
+    transform: translate(-50%, -50%);
+    color: rgb(248, 244, 244);
+    text-align: -webkit-center;
+       
+
+}
+label{
+
+font-size: 17px;
+font-weight: 500;
+
+
+}
+
+
+.form-control{
+
+    width: 226px;
+
+
+
+}
+
+
+form table{
+
+    vertical-align: center;
+    margin-left: 250px;
+    margin-top: 70px;
+    background-color: rgba(45, 126, 218, .7);
+    border-radius: 5px;
+    font: center; 
+    padding: 30px 20px;
+    position: relative;    
+} 
+
+body{
+
+    background-color: rgb(96, 160, 245);
+    padding-top: 0px;
+    margin-left: 150px;
+    margin-right: 150px;
+    
+
+
+}
+
+#tablaLista{
+    border: 1px solid black;
+    width: 70%;
+}
+
+#bodyTabla{
+    text-align: center;
+    border: 1px solid black;
+}
+
+#logo{
+    width: 500px;    
+    position: relative;
+    top: 50px;
+    left: 30px;
+    
+}
+
+
+
+header{
+    
+    margin-top: 0px;
+    height: 500px;    
+    background-image: url("../images/free-people-icon-vector.jpg");
+}
+
+#tablaLista{
+    position: static;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    text-align: center;
+    height: 202px;
+    width: 702px;
+
+}
+
+nav{
+    background-color: rgb(221, 67, 98);
+    padding: 10px;
+}
+
+#tablaLista td{
+    background-color: rgb(221, 67, 98);
+}
+
+#tablaLista th{
+    background-color: rgb(67, 82, 221);
+}
+
+#btnAlta{
+
+    border-radius: 5px;
+    height: 50px;
+    width: 90px;
+    background-color: rgb(109, 216, 136);
+    
+}
+
+.puntero{
+
+    cursor: pointer;
+}
+
+.show{
+    display: table-cell;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+.hide{
+    display: none;
+}
+
+.btn-primary.disabled, .btn-primary:disabled{
+
+font-size: 23px;
+
+
+}
+.btn-warning{
+
+    border-radius: 5px;
+    width: 106px;
+    height: 39px;
+    color: black;
+    margin-right: 10px;
+    vertical-align: baseline;
+
+}
+
+input{
+
+margin-top: 20px;
+
+
+}
