@@ -82,23 +82,30 @@ function mostrarFormulario(id, operacion) {
 
 
         cargarPersonaEnForm(personaA, operacion);
-        // var botonModificar = $('<button/>');
 
 
-        var botonModificar = $(document.createElement("button")).attr('id', 'btnModificar').attr("type", "button").text('Change').addClass('btn btn-warning');
+        var botonModificar = $(document.createElement("button"))
+        .attr('id', 'btnModificar')
+        .attr("type", "button")
+        .text('Change')
+        .addClass('btn btn-warning');
         
-        var botonEliminar = $(document.createElement("button")).attr('id', 'btnEliminar').attr("type", "button").text('Delete').addClass('btn btn-warning');
+        var botonEliminar = $(document.createElement("button"))
+        .attr("type", "button")
+        .text('Delete')
+        .addClass('btn btn-warning');
+        
+           botonEliminar.click(function(){ 
 
-        $('#btnEliminar').click(function () { 
             var persona = modificarTabla('modificar', personaA.id);
             cerrarFormulario();
             borrarTabla();
             eliminarPersona(persona.id);
             traerPersonas();
-        })
+        });
 
         // botonModificar.addEventListener("click", () => {
-        $("#btnModificar").click(function(){
+        botonModificar.click(function(){
 
 
             var persona = modificarTabla('modificar', personaA.id);
@@ -112,10 +119,6 @@ function mostrarFormulario(id, operacion) {
 
         })
             
-
-        // })
-
-
         $("#divFrm").append(botonModificar);
         $("#divFrm").append(botonEliminar);
 
@@ -124,14 +127,16 @@ function mostrarFormulario(id, operacion) {
     else {
         cargarPersonaEnForm(personaA, operacion);
 
-        var botonEnviar = document.createElement("input");
-        botonEnviar.setAttribute('id', 'btnEnviar');
 
-        botonEnviar.setAttribute("type", "button");
-        botonEnviar.setAttribute("value", "Save");
-        botonEnviar.setAttribute('class', 'btn btn-warning');
+        
 
-        botonEnviar.addEventListener("click", () => {
+        var botonEnviar = $(document.createElement("button"))
+        .attr("type", "button")
+        .attr("id", "btnEnviar")
+        .text("Save")
+        .attr('class', 'btn btn-warning');
+
+        botonEnviar.click(function(){
 
             var persona = modificarTabla('agregar');
             if (persona != false) {
@@ -144,7 +149,7 @@ function mostrarFormulario(id, operacion) {
 
 
 
-        })
+        });
         $("#divFrm").append(botonEnviar);
 
     }
@@ -193,7 +198,6 @@ function cargarPersonaEnForm(persona, operacion) {
 
             select.setAttribute('class', "form-control");
             select.setAttribute('id', "exampleFormControlSelect1");
-            console.log(select.textContent);
 
             genderF = document.createElement("option");
             genderM = document.createElement("option");
@@ -257,7 +261,6 @@ function cargarPersonaEnForm(persona, operacion) {
 
 
     }
-    console.log(select);
 
 }
 
@@ -419,15 +422,12 @@ function modificarTabla(accion, id) {
         retornoLista = obj;
 
     }
-    console.log(retornoLista);
     if (retornoLista.email.trim() === "" || retornoLista.first_name.trim() === "" || retornoLista.last_name.trim() === "") {
 
         console.log('no se pudo guardar el usuario, faltan datos');
-        console.log(retornoLista);
         retornoLista = false;
     }
 
-    console.log(retornoLista);
     return retornoLista;
 
 }
