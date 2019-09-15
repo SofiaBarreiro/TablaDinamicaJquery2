@@ -18,8 +18,8 @@ function asignarEventos() {
 
     cerrarFormulario();
     traerPersonas();
-    $('#btnAlta').click(function () { 
-        
+    $('#btnAlta').click(function () {
+
         abrirFormulario();
         mostrarFormulario(lista[0]["id"], "alta");
     });
@@ -32,12 +32,11 @@ function cerrarFormulario() {
     $("#closeUp").removeClass("hide");
     $("#closeUp").addClass("show");
 
-    if($("#divFrm").hasClass("show")){
+    if ($("#divFrm").hasClass("show")) {
 
         $("#divFrm").removeClass("show");
     }
-    if(!$("#divFrm").hasClass("hide"))
-    {
+    if (!$("#divFrm").hasClass("hide")) {
         $("#divFrm").addClass("hide");
     }
 
@@ -45,15 +44,15 @@ function cerrarFormulario() {
 
 }
 function abrirFormulario() {
+    $("#closeUp").removeClass("show");
 
     $("#closeUp").addClass('hide');
 
-    if($("#divFrm").hasClass("hide")){
+    if ($("#divFrm").hasClass("hide")) {
 
         $("#divFrm").removeClass("hide");
     }
-    if(!$("#divFrm").hasClass("show"))
-    {
+    if (!$("#divFrm").hasClass("show")) {
         $("#divFrm").addClass("show");
     }
 
@@ -85,17 +84,17 @@ function mostrarFormulario(id, operacion) {
 
 
         var botonModificar = $(document.createElement("button"))
-        .attr('id', 'btnModificar')
-        .attr("type", "button")
-        .text('Change')
-        .addClass('btn btn-warning');
-        
+            .attr('id', 'btnModificar')
+            .attr("type", "button")
+            .text('Change')
+            .addClass('btn btn-warning');
+
         var botonEliminar = $(document.createElement("button"))
-        .attr("type", "button")
-        .text('Delete')
-        .addClass('btn btn-warning');
-        
-           botonEliminar.click(function(){ 
+            .attr("type", "button")
+            .text('Delete')
+            .addClass('btn btn-warning');
+
+        botonEliminar.click(function () {
 
             var persona = modificarTabla('modificar', personaA.id);
             cerrarFormulario();
@@ -105,7 +104,7 @@ function mostrarFormulario(id, operacion) {
         });
 
         // botonModificar.addEventListener("click", () => {
-        botonModificar.click(function(){
+        botonModificar.click(function () {
 
 
             var persona = modificarTabla('modificar', personaA.id);
@@ -118,7 +117,7 @@ function mostrarFormulario(id, operacion) {
             }
 
         })
-            
+
         $("#divFrm").append(botonModificar);
         $("#divFrm").append(botonEliminar);
 
@@ -128,15 +127,15 @@ function mostrarFormulario(id, operacion) {
         cargarPersonaEnForm(personaA, operacion);
 
 
-        
+
 
         var botonEnviar = $(document.createElement("button"))
-        .attr("type", "button")
-        .attr("id", "btnEnviar")
-        .text("Save")
-        .attr('class', 'btn btn-warning');
+            .attr("type", "button")
+            .attr("id", "btnEnviar")
+            .text("Save")
+            .attr('class', 'btn btn-warning');
 
-        botonEnviar.click(function(){
+        $('#btnEnviar').click(function () {
 
             var persona = modificarTabla('agregar');
             if (persona != false) {
@@ -154,17 +153,18 @@ function mostrarFormulario(id, operacion) {
 
     }
 
+    var botonCerrar = $(document.createElement("button"))
+        .attr("type", "button")
+        .attr("id", "btnCerrar")
+        .text("Close")
+        .attr('class', 'btn btn-warning');
 
-    var botonCerrar = document.createElement("button");
-    botonCerrar.setAttribute("type", "button");
-    botonCerrar.textContent = 'Close';
-    botonCerrar.setAttribute('class', 'btn btn-warning');
 
 
-    botonCerrar.addEventListener('click', () => {
+    $("#divFrm").append(botonCerrar);
+    $('#btnCerrar').click(function () {
         cerrarFormulario();
     });
-    $("#divFrm").append(botonCerrar);
 
 }
 function obtenerPersonaForm() {
@@ -172,91 +172,87 @@ function obtenerPersonaForm() {
     lista[0];
 
     for (var key in lista[0]) {
-        obj[key] = document.getElementById(key).value;
+
+        obj[key] = $("key").val;
     }
 
     return obj;
 
 }
 function cargarPersonaEnForm(persona, operacion) {
-    var form = document.getElementById("divFrm");
+
+    // $("#divFrm");
 
     for (var key in persona) {
 
-        var label = document.createElement("label");
-        label.style.display = "block";
+        var label = $(document.createElement("label")).attr("display", "block");
+        // label.style.display = "block";
         var datoLabel = document.createTextNode(key);
-        label.appendChild(datoLabel);
+        label.append(datoLabel);
 
-        var genderF;
-        var genderM;
-        var select = document.createElement('select');
-
-
+        var select = $(document.createElement("select"));
 
         if (key == "gender") {
 
-            select.setAttribute('class', "form-control");
-            select.setAttribute('id', "exampleFormControlSelect1");
+            select.addClass("form-control");
+            // select.attr('id', "select1");
 
-            genderF = document.createElement("option");
-            genderM = document.createElement("option");
-            genderF.setAttribute("value", "Female");
-            genderM.setAttribute("value", "Male");
-            genderF.setAttribute("id", "genderF");
-            genderM.setAttribute("id", "genderM");
-            var f = document.createTextNode("Female");
-            var m = document.createTextNode("Male");
-            genderF.appendChild(f);
-            genderM.appendChild(m);
-            select.appendChild(genderF);
-            select.appendChild(genderM);
-            form.appendChild(select);
+            $(select).append(new Option("Female", "genderF")).attr("id", "genderF");
+
+            $(select).append(new Option("Male", "genderM")).attr("id", "genderM");
+
+            $("#divFrm").append(select);
 
 
         } else {
 
-            var dato;
-            dato = document.createElement("input");
-            dato.setAttribute("id", key);
-            dato.setAttribute("type", "text");
-            dato.style.display = "block";
-            dato.setAttribute('class', "form-control")
-            dato.setAttribute('aria-describedby', 'emailHelp');
-            dato.setAttribute('position', 'fixed');
+            var dato = $(document.createElement("input"));
+
+            dato.attr("id", key).attr("type", "text")
+                .addClass("form-control")
+                .attr('aria-describedby', 'emailHelp')
+                .attr('position', 'fixed');
+
+            // dato.style.display = "block";
+
 
             switch (key) {
                 case ('active'):
-                    label.style.display = "none";
-                    dato.style.display = "none";
+                    $(label).hide();
+
+                    // label.style.display = "none";
+                    // dato.style.display = "none";
+                    dato.hide();
                     break;
                 case ('email'):
-                    dato.placeholder = 'example@email.com';
+                    dato.attr("placeholder", 'example@email.com');
                     break;
                 case ('id'):
-                    dato.readOnly = true;
+                    dato.attr("readOnly", true);
+                // dato.readOnly = true;
                 default:
-                    dato.placeholder = key;
+                    // dato.placeholder = key;
+                    dato.attr("placeholder", key);
+
                     break;
 
             }
-            form.appendChild(dato);
+            $("#divFrm").append(dato);
 
         }
-
 
 
         if (operacion == "alta") {
-            var datoPersona = document.createTextNode(persona[key]);
-            dato.appendChild(datoPersona);
-            dato.textContent = datoPersona;
+            // var datoPersona = document.createTextNode(persona[key]);
+            // dato.append(datoPersona);
+            dato.text(persona[key]);
         } else {
             if (key != 'gender') {
-                dato.value = persona[key];
+                dato.val(persona[key]);
             }
         }
 
-        form.appendChild(label);
+        $("#divFrm").append(label);
 
 
 
